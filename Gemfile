@@ -1,6 +1,16 @@
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
 # Specify your gem's dependencies in beaker-puppeter.gemspec
 gemspec
+
+group :acceptancetests do
+  gem 'beaker', require: false
+  gem 'beaker-rspec', require: false
+  gem 'beaker-vagrant', require: false
+  gem 'vagrant-wrapper', require: false
+end
+
+group :development do
+  gem 'pry', require: false
+  gem 'pry-byebug', require: false
+end
