@@ -11,5 +11,4 @@ HOSTS:
         from: /tmp/vagrant-cache/apt/debian-8-vagrant
         to: /var/cache/apt/archives
 CONFIG:
-  type: foss
   log_level: debug

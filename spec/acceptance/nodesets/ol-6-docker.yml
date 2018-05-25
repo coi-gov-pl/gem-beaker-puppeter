@@ -16,5 +16,4 @@ HOSTS:
         container_path: /var/cache/yum
 CONFIG:
   trace_limit: 200
-  type: foss
   log_level: debug

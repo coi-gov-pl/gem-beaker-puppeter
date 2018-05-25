@@ -4,30 +4,30 @@ require 'beaker/puppeter/executor'
 module Beaker
   module Puppeter
     PUPPETER_SCRIPT_KEY = 'PUPPETER_ANSWERS'
-    PUPPETER_SCRIPT_DEFAULT_VALUE = 'default'
 
     def run_puppeter(answers = :auto)
       run_puppeter_on(hosts, answers)
     end
 
     def run_puppeter_on(hosts, answers = :auto)
-      if answers == :auto
-        answers = ENV.fetch(PUPPETER_SCRIPT_KEY, PUPPETER_SCRIPT_DEFAULT_VALUE)
-      end
-
-      install_puppeter_on hosts
       hosts.each do |host|
-        execute_puppeter_on(host).with(answers)
+        install_puppeter_on host
+        execute_puppeter_on(host)
+          .with(code: answers, env: env_answers)
       end
     end
 
     private
 
-    def install_puppeter_on(hosts)
-      hosts.each do |host|
-        ensure_curl_on host
-        on host, 'curl https://raw.githubusercontent.com/coi-gov-pl/puppeter/master/setup.sh | bash'
-      end
+    def env_answers
+      answers = ENV.fetch(PUPPETER_SCRIPT_KEY, nil)
+      set = !answers.nil?
+      { set: set, answers: answers }
+    end
+
+    def install_puppeter_on(host)
+      ensure_curl_on host
+      on host, 'curl -L https://raw.githubusercontent.com/coi-gov-pl/puppeter/master/setup.sh | bash'
     end
 
     def execute_puppeter_on(host)

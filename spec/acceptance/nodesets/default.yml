@@ -11,5 +11,4 @@ HOSTS:
         from: /tmp/vagrant-cache/wget/ol-6-vagrant
         to: /var/cache/yum
 CONFIG:
-  type: foss
   log_level: info

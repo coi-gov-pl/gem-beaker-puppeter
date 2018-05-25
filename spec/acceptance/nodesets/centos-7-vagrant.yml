@@ -11,5 +11,4 @@ HOSTS:
         from: /tmp/vagrant-cache/yum/centos-7-vagrant
         to: /var/cache/yum
 CONFIG:
-  type: foss
   log_level: debug

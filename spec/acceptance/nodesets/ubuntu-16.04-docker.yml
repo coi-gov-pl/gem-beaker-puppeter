@@ -16,5 +16,4 @@ HOSTS:
         host_path: /tmp/docker-cache/apt/ubuntu-1604-docker
         container_path: /var/cache/apt/archives
 CONFIG:
-  type: foss
   log_level: debug

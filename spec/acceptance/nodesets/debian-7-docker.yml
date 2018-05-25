@@ -15,5 +15,4 @@ HOSTS:
         host_path: /tmp/apt_cache/debian-7-amd64
         container_path: /var/cache/apt
 CONFIG:
-  type: foss
-log_level: debug
+  log_level: debug
