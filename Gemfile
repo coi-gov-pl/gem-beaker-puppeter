@@ -4,10 +4,13 @@ source "https://rubygems.org"
 gemspec
 
 group :acceptancetests do
-  gem 'beaker', require: false
   gem 'beaker-rspec', require: false
   gem 'beaker-vagrant', require: false
   gem 'vagrant-wrapper', require: false
+end
+
+group :tests do
+  gem 'simplecov', require: false
 end
 
 group :development do

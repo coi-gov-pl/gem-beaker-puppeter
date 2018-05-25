@@ -1,5 +1,6 @@
 require 'beaker/puppeter/version'
 require 'beaker/puppeter/executor'
+require 'beaker'
 
 module Beaker
   module Puppeter

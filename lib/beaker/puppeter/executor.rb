@@ -1,8 +1,6 @@
 module Beaker
   module Puppeter
-
     class Executor
-
       PUPPETER_SCRIPT_DEFAULT_VALUE = 'default'
 
       def initialize(host)
