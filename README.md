@@ -1,6 +1,6 @@
 # Beaker::Puppeter
 
-This plugin integrates Puppeter into Beaker testing framework, by installing and running it with provided answer files.
+This plugin integrates [Puppeter](https://github.com/coi-gov-pl/puppeter/) into [Beaker](https://github.com/puppetlabs/beaker) testing harness, by installing and running it with user provided answer files.
 
 ## Installation
 
@@ -10,17 +10,58 @@ Add this line to your module's Gemfile:
 gem 'beaker-puppeter', require: false
 ```
 
-And then execute:
-
-    $ bundle
-
 ## Usage
 
-TODO: Write usage instructions here
+To use beaker-puppeter add those lines to yours `spec/spec_helper_acceptance.rb` file:
+
+```ruby
+require 'beaker/puppeter'
+run_puppeter
+```
+
+This configuration will look automatically for Puppeter answers in `spec/acceptance/answers/default.yml`, so place it there.
+
+Answer file must be in format accepted by Puppeter. Consult [Puppeter documentation](https://github.com/coi-gov-pl/puppeter/blob/develop/README.rst) for more details.
+
+Sample answer file can be as simple as:
+
+```yaml
+# will install puppet agent 5.x from Puppet Inc. managed deb repositories
+installer:
+  mode: Agent
+  type: pc5x
+```
+
+### Changing Puppeter answer file
+
+You can change answers file in tree ways:
+
+1. Using environment variable `PUPPETER_ANSWERS`:
+```bash
+PUPPETER_ANSWERS=puppet4 RS_SET=centos7 bundle exec rake acceptance
+```
+
+2. Using directly in code:
+```ruby
+run_puppeter 'puppet4' # will run spec/acceptance/answers/puppet4.yml
+```
+
+3. Configuring `puppeter_answers` variable in nodeset:
+
+```yaml
+CONFIG:
+  puppeter_answers: puppet4
+```
+
+The importance of those set methods are: environment variables, direct code, nodeset settings.
+
+### Fine tuned usage
+
+You can also utilize `run_puppeter_on` helper method to run Puppeter on specific hosts. It's useful when you would like to run different answer files on different hosts.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bundle` to install dependencies. Then, run `bundle exec rake spec` to run the unit tests. You can also run `bundle exec rake acceptance` to run Docker/Vagrant based acceptance tests.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
