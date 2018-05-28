@@ -41,7 +41,6 @@ workflows:
       - centos-6-default
       - centos-7-system
       - debian-8-puppet4
-      - debian-9-system
       - ubuntu-1404-puppet3
       - ubuntu-1604-puppet5
 
@@ -75,9 +74,3 @@ jobs:
     environment:
       RS_SET: debian-8-docker
       PUPPETER_ANSWERS: agent-pc4x
-  debian-9-system:
-    <<: *environment-defaults
-    <<: *steps
-    environment:
-      RS_SET: debian-9-docker
-      PUPPETER_ANSWERS: agent-system
