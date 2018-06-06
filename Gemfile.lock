@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    beaker-puppeter (0.1.0)
+    beaker-puppeter (0.1.1.pre)
       beaker (< 4)
 
 GEM
