@@ -1,5 +1,7 @@
 # Beaker::Puppeter
 
+[![Build Status](https://travis-ci.org/coi-gov-pl/gem-beaker-puppeter.svg?branch=develop)](https://travis-ci.org/coi-gov-pl/gem-beaker-puppeter) [![CircleCI](https://circleci.com/gh/coi-gov-pl/gem-beaker-puppeter.svg?style=svg)](https://circleci.com/gh/coi-gov-pl/gem-beaker-puppeter) [![Coverage Status](https://coveralls.io/repos/github/coi-gov-pl/gem-beaker-puppeter/badge.svg?branch=develop)](https://coveralls.io/github/coi-gov-pl/gem-beaker-puppeter?branch=develop)
+
 This plugin integrates [Puppeter](https://github.com/coi-gov-pl/puppeter/) into [Beaker](https://github.com/puppetlabs/beaker) testing harness, by installing and running it with user provided answer files.
 
 ## Installation
