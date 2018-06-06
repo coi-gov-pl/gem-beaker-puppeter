@@ -22,7 +22,7 @@ describe 'beaker::puppeter' do
     expect(result).to be_truthy
   end
 
-  describe command('puppet --version') do
+  describe command('bash -lc "puppet --version"') do
     its(:stdout) { should match /^#{puppet_major}\.\d+\.\d+$/ }
   end
 end

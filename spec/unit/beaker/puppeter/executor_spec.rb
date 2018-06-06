@@ -4,7 +4,7 @@ describe Beaker::Puppeter::Executor do
   let :subject do
     Beaker::Puppeter::Executor.new(host)
   end
-  let :logger { double() }
+  let(:logger) { double() }
   describe '#with' do
     context 'on host with nodeset config value puppeter_answers set to "alice"' do
       let :host do
@@ -44,7 +44,7 @@ describe Beaker::Puppeter::Executor do
 
 
     context 'on simple host without any configuration values' do
-      let :host { double(options: {}, to_s: 'ubuntu16') }
+      let(:host) { double(options: {}, to_s: 'ubuntu16') }
 
       before :each do
         expect(subject).to receive(:on)

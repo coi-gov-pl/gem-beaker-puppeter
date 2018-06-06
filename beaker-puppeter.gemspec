@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["krzysztof.suszynski@coi.gov.pl"]
 
   spec.summary       = "Integrates Puppeter into Beaker by adding extra helper methods"
-  spec.description   = <<~eos
+  spec.description   = <<-eos.gsub /^\s*/, ''
                         Puppeter is a automated, unattended, Puppet installer, and beaker-puppeter
                         is a Beaker extension that adds helper methods to use in your
                         spec_helper_acceptance file.
@@ -23,9 +23,7 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'beaker', '< 4'
+  spec.required_ruby_version = [ '>= 2.1.0', '< 2.5.0' ]
 
-  spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_dependency 'beaker', '< 4'
 end
