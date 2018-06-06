@@ -1,0 +1,76 @@
+# Ruby CircleCI 2.0 configuration file
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+version: 2
+
+references:
+  machine-defaults: &environment-defaults
+    machine: true
+  restore-cache-bundler: &restore-cache-bundler
+    restore_cache:
+      keys:
+      - v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - v1-dependencies-
+  save-cache-bundler: &save-cache-bundler
+    save_cache:
+      paths:
+        - ./vendor/bundle
+      key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+  bundle-install: &bundle-install
+    run:
+      name: Install dependencies with Bundler
+      shell: /bin/bash -leo pipefail
+      command: bundle install --without development --jobs=4 --retry=3 --no-deployment --path vendor/bundle
+  acceptance-tests: &acceptance-tests
+    run:
+      name: Run acceptance tests using Beaker
+      shell: /bin/bash -leo pipefail
+      command: bundle exec rake acceptance
+
+  steps: &steps
+    steps:
+      - checkout
+      - *restore-cache-bundler
+      - *bundle-install
+      - *save-cache-bundler
+      - *acceptance-tests
+
+workflows:
+  version: 2
+  integration-tests:
+    jobs:
+      - centos-6-default
+      - centos-7-system
+      - debian-8-puppet4
+      - ubuntu-1404-puppet3
+      - ubuntu-1604-puppet5
+
+jobs:
+  centos-6-default:
+    <<: *environment-defaults
+    <<: *steps
+    environment:
+      RS_SET: centos-6-docker
+  centos-7-system:
+    <<: *environment-defaults
+    <<: *steps
+    environment:
+      RS_SET: centos-7-docker
+      PUPPETER_ANSWERS: agent-system
+  ubuntu-1404-puppet3:
+    <<: *environment-defaults
+    <<: *steps
+    environment:
+      RS_SET: ubuntu-14.04-docker
+      PUPPETER_ANSWERS: agent-pc3x
+  ubuntu-1604-puppet5:
+    <<: *environment-defaults
+    <<: *steps
+    environment:
+      RS_SET: ubuntu-16.04-docker
+      PUPPETER_ANSWERS: agent-pc5x
+  debian-8-puppet4:
+    <<: *environment-defaults
+    <<: *steps
+    environment:
+      RS_SET: debian-8-docker
+      PUPPETER_ANSWERS: agent-pc4x
