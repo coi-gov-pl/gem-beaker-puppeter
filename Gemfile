@@ -7,14 +7,14 @@ gem 'rake', require: false
 gem 'rspec', require: false
 
 group :acceptancetests do
-  gem 'beaker-rspec', require: false
+  gem 'beaker-rspec', '>= 6.2.3', require: false
   gem 'beaker-vagrant', require: false
   gem 'vagrant-wrapper', require: false
 end
 
 group :tests do
-  gem 'coveralls', require: false
-  gem 'simplecov', require: false
+  gem 'coveralls', '>= 0.7.1', require: false
+  gem 'simplecov', '>= 0.16.1', require: false
 end
 
 group :development do
