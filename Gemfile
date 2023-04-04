@@ -3,7 +3,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in beaker-puppeter.gemspec
 gemspec
 
-gem 'rake', require: false
+gem 'rake', '>= 12.3.3', require: false
 gem 'rspec', require: false
 
 group :acceptancetests do
