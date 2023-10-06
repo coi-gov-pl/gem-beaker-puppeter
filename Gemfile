@@ -7,7 +7,7 @@ gem 'rake', require: false
 gem 'rspec', require: false
 
 group :acceptancetests do
-  gem 'beaker-rspec', require: false
+  gem 'beaker-rspec', '>= 6.2.4', require: false
   gem 'beaker-vagrant', require: false
   gem 'vagrant-wrapper', require: false
 end
